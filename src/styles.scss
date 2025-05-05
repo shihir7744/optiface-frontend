@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary: #00f5d4;
+  --secondary: rgb(0, 245, 212);
+  --background: #0a0f1c;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}

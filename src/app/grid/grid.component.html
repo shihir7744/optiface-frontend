@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row" *ngFor="let rowIndex of rows">
+    <div
+      class="box"
+      *ngFor="let colIndex of cols"
+      [style.filter]="'hue-rotate(' + (rowIndex * 36) + 'deg)'"
+    ></div>
+  </div>
+</div>

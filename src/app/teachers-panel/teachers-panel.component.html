@@ -1,0 +1,29 @@
+<body>
+<button class="theme-toggle" id="themeToggle">
+  <i class="fas fa-sun"></i>
+</button>
+
+<div class="noise"></div>
+
+<div class="container">
+  <div class="logo">
+    <div class="logo-circle"></div>
+    <div class="logo-scan"></div>
+  </div>
+  <div class="title">OPTI_FACE</div>
+  <p class="subtitle">Smart Attendance System using Face Recognition</p>
+
+  <div class="button-container">
+    <a routerLink="/registration" class="button">
+      <img ngSrc="assets/photos/attandance.jpg" alt="Registration" height="800" width="800">
+      <span>Attendance</span>
+    </a>
+    <a routerLink="/attendance-test" class="button">
+      <img ngSrc="assets/photos/list.png" alt="Data Test" height="500" width="500">
+      <span>Attendance List</span>
+    </a>
+  </div>
+
+  <button class="logout" (click)="logout()">Logout</button>
+</div>
+</body>
