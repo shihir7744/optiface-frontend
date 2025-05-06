@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {GridComponent} from '../grid/grid.component';
 
 @Component({
   selector: 'app-admin',

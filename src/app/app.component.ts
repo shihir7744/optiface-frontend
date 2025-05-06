@@ -5,7 +5,6 @@ import { NgOptimizedImage } from '@angular/common';
 import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {TeachersPanelComponent} from './teachers-panel/teachers-panel.component';
-import {LoginFormComponent} from './login-form/login-form.component';
 import {GridComponent} from './grid/grid.component'; // <-- Import this here
 
 @Component({
@@ -18,7 +17,6 @@ import {GridComponent} from './grid/grid.component'; // <-- Import this here
     HomeComponent,
     LoginComponent,
     TeachersPanelComponent,
-    LoginFormComponent,
     GridComponent
   ],
   // template: '<router-outlet></router-outlet>',

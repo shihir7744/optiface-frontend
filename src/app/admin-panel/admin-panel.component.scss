@@ -6,19 +6,14 @@
 }
 
 :root {
-  --primary: #00bcd4;
-  --secondary: #00796b;
-  --background-light: #ffffff;
-  --background-dark: #0a0f1c;
-  --card-bg-light: rgb(0, 0, 0);
-  --card-bg-dark: rgba(255, 255, 255, 0.08);
-  --text-light: #000000;
-  --text-dark: #ffffff;
-  --text-secondary-light: rgba(0, 0, 0, 0.8);
-  --text-secondary-dark: rgba(255, 255, 255, 0.8);
-  --primary-rgb: 0, 188, 212;  /* RGB values for #00bcd4 */
-  --secondary-rgb: 0, 121, 107; /* RGB values for #00796b */
+  --primary: #00f5d4;
+  --secondary: #00f5d4;
+  --background: #0a0f1c;
+  --card-bg: #ffffff;
+  --text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
 }
+
 
 body {
   font-family: 'Arial', sans-serif;
@@ -40,6 +35,7 @@ body.dark-mode {
 
 
 .container {
+  content: '';
   position: relative;
   min-height: 80vh;
   display: flex;
@@ -48,6 +44,7 @@ body.dark-mode {
   align-items: center;
   z-index: 2;
   padding: 3rem;
+  pointer-events: none;
 }
 
 .title {
@@ -62,6 +59,7 @@ body.dark-mode {
   text-transform: uppercase;
   position: relative;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
 }
 
 body.dark-mode .title {
@@ -77,6 +75,7 @@ body.dark-mode .title {
   max-width: 600px;
   transition: color 0.3s ease;
   position: relative;
+  pointer-events: auto;
 }
 
 body.dark-mode .subtitle {
@@ -115,26 +114,29 @@ body.dark-mode .subtitle::after {
 }
 
 .button {
+  position: relative;
   display: inline-block;
   background-color: var(--card-bg-light);
   border: none;
-  padding: 20px;
+  padding: 2em;
   text-align: center;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 12px;
   transition: 0.3s;
   text-decoration: none;
   color: var(--text-light);
-  width: 210px;
-  height: 210px;
+  width: 180px;
+  height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
-  border: 1px solid rgb(113, 108, 108);
+  //border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 2;
+
 }
 
 body.dark-mode .button {
@@ -228,42 +230,6 @@ body.dark-mode .button {
 
 }
 
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-  .button::after,
-  .button::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    padding: 5px;
-    border-radius: 25px;
-    animation: spin 3s linear infinite;
-  }
-
-  .button::before {
-    filter: blur(1.5rem);
-    opacity: 0.5;
-  }
-
-  @keyframes spin {
-    from {
-      --angle: 0deg;
-    }
-    to {
-      --angle: 360deg;
-    }
-  }
-
 
 
 
@@ -273,6 +239,7 @@ body.dark-mode .button {
   width: 120px;
   height: 120px;
   margin-bottom: 2rem;
+  pointer-events: auto;
 }
 
 .logo-circle {
@@ -402,5 +369,52 @@ body.dark-mode .button {
 
 body.dark-mode .theme-toggle i {
   color: var(--text-dark);
+}
+
+.button-card{
+  position: relative;
+  background: var(--background);
+  border-radius: 20px;
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  //border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  color: var(--text);
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.button-card::after,
+.button-card::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 5px;
+  border-radius: 25px;
+  animation: spin 3s linear infinite;
+}
+
+.button-card::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
 }
 
