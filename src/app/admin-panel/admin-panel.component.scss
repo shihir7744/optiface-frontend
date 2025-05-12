@@ -42,8 +42,8 @@ body.dark-mode {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
   z-index: 2;
-  padding: 3rem;
   pointer-events: none;
 }
 
@@ -59,7 +59,6 @@ body.dark-mode {
   text-transform: uppercase;
   position: relative;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  pointer-events: auto;
 }
 
 body.dark-mode .title {
@@ -75,7 +74,6 @@ body.dark-mode .title {
   max-width: 600px;
   transition: color 0.3s ease;
   position: relative;
-  pointer-events: auto;
 }
 
 body.dark-mode .subtitle {
@@ -96,7 +94,6 @@ body.dark-mode .subtitle {
     transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
-  pointer-events: none;
 }
 
 body.dark-mode .title::after,
@@ -111,6 +108,7 @@ body.dark-mode .subtitle::after {
   gap: 20px;
   max-width: 900px;
   width: 100%;
+  pointer-events: auto;
 }
 
 .button {
@@ -134,7 +132,6 @@ body.dark-mode .subtitle::after {
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
-  //border: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 2;
 
 }
@@ -159,7 +156,7 @@ body.dark-mode .button {
 }
 
 .button span {
-  font-size: 18px;
+  font-size: 15px;
   text-transform: uppercase;
   font-weight: 600;
   color: inherit;
@@ -179,6 +176,7 @@ body.dark-mode .button {
   cursor: pointer;
   transition: background-color 0.3s ease;
   z-index: 3;
+  pointer-events: auto;
 }
 
 .logout:hover {
@@ -394,7 +392,8 @@ body.dark-mode .theme-toggle i {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  //background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  background-image: conic-gradient(from var(--angle), #0bef91, #99edcc,#0bef91);
   top: 50%;
   left: 50%;
   translate: -50% -50%;

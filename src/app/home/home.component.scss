@@ -40,6 +40,7 @@ body {
   justify-content: center;
   padding: 2rem;
   z-index: 2;
+  pointer-events: none;
 }
 
 .logo {
@@ -47,6 +48,7 @@ body {
   width: 120px;
   height: 120px;
   margin-bottom: 2rem;
+  pointer-events: auto;
 }
 
 .logo-circle {
@@ -56,6 +58,7 @@ body {
   border: 3px solid var(--primary);
   border-radius: 50%;
   animation: pulse 2s infinite;
+  background: #0c0c0c;
 }
 
 .logo-circle::before {
@@ -69,6 +72,8 @@ body {
   border: 2px dashed var(--secondary);
   border-radius: 50%;
   animation: rotate 10s linear infinite;
+  background: #0c0c0c;
+
 }
 
 .logo-circle::after {
@@ -79,8 +84,10 @@ body {
   width: 60%;
   height: 60%;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, transparent 50%, var(--primary) 51%, transparent 52%);
+  //background: radial-gradient(circle, transparent 50%, var(--primary) 51%, transparent 52%);
   animation: faceScan 3s ease-in-out infinite;
+  background: #0c0c0c;
+
 }
 
 .logo-scan {
@@ -106,6 +113,7 @@ body {
 .logo::before {
   left: 35%;
   animation-delay: -1.5s;
+
 }
 
 .logo::after {
@@ -128,6 +136,7 @@ body {
   background: linear-gradient(to right, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  pointer-events: auto;
 }
 
 .highlight {
@@ -139,6 +148,7 @@ body {
   color: var(--text-secondary);
   font-size: 1.25rem;
   margin-bottom: 4rem;
+  pointer-events: auto;
 }
 
 /* Cards */
@@ -161,6 +171,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-decoration: none;
   color: var(--text);
+  pointer-events: auto;
 }
 
 .card-content {
@@ -210,7 +221,7 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  background-image: conic-gradient(from var(--angle), #0bef91, #99edcc,#0bef91);
   top: 50%;
   left: 50%;
   translate: -50% -50%;
@@ -245,6 +256,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+
 }
 
 .icon svg {

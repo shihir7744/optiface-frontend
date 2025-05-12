@@ -16,8 +16,8 @@ body {
 
 .row {
   display: inline-flex;
-  margin-top: -14px;
-  margin-left: -14px;
+  margin-top: -32px;
+  margin-left: -50px;
 }
 
 .row:nth-child(even) {
@@ -26,8 +26,8 @@ body {
 
 .row .box {
   position: relative;
-  width: 30px; /* Recommended fixed width for layout */
-  height: 40px; /* Recommended fixed height */
+  width: 100px; /* Recommended fixed width for layout */
+  height: 110px; /* Recommended fixed height */
   background: #0c0c0c;
   margin: 0;
   transition: 2s;
@@ -50,10 +50,10 @@ body {
 .row .box::after {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 2px;
-  bottom: 2px;
-  right: 2px;
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  right: 4px;
   background:#111;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%,0% 75%,0% 25%);
 }

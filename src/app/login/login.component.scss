@@ -152,6 +152,7 @@ body {
   padding: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: 2s;
+  pointer-events: auto;
 }
 
 @property --angle {
@@ -166,7 +167,8 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  //background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  background-image: conic-gradient(from var(--angle), #0bef91, #99edcc,#0bef91);
   top: 50%;
   left: 50%;
   translate: -50% -50%;
