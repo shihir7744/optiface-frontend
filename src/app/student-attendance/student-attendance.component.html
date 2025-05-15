@@ -1,4 +1,3 @@
-<!-- File: student-attendance.component.html -->
 <div class="container">
   <h2>Student Attendance Report</h2>
 
@@ -7,9 +6,7 @@
       <mat-label>Semester</mat-label>
       <mat-select [(ngModel)]="selectedSemester">
         <mat-option value="all">All</mat-option>
-        <mat-option *ngFor="let sem of semesterOptions" [value]="sem">
-          {{ sem }}
-        </mat-option>
+        <mat-option *ngFor="let sem of semesterOptions" [value]="sem">{{ sem }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -17,10 +14,21 @@
       <mat-label>Course</mat-label>
       <mat-select [(ngModel)]="selectedSubject">
         <mat-option value="all">All</mat-option>
-        <mat-option *ngFor="let subject of subjectOptions" [value]="subject">
-          {{ subject }}
-        </mat-option>
+        <mat-option *ngFor="let subject of subjectOptions" [value]="subject">{{ subject }}</mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Student ID</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="studentIdControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let id of filteredStudentIds$ | async" [value]="id">{{ id }}</mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </div>
 
@@ -28,7 +36,9 @@
 
   <ng-container *ngFor="let item of filteredSummary()">
     <mat-card class="summary-card">
-      <mat-card-title>{{ item.subject }} - {{ item.semester }} Semester</mat-card-title>
+      <mat-card-title class="card-title">
+        {{ item.subject }} - {{ item.semester }} Semester
+      </mat-card-title>
       <mat-card-subtitle>
         Student: {{ item.studentName }} ({{ item.studentId }})<br />
         Department: {{ item.department }}<br />
@@ -37,7 +47,6 @@
 
       <div class="table-wrapper">
         <table mat-table [dataSource]="item.sessions" class="mat-elevation-z2">
-
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef>Date</th>
             <td mat-cell *matCellDef="let row">{{ row.date }}</td>
@@ -60,7 +69,8 @@
       <div class="summary-totals">
         <strong>Total Classes:</strong> {{ item.total }}<br />
         <strong>Attended:</strong> {{ item.attended }}<br />
-        <strong>Fine:</strong> ₹{{ item.fine }}
+        <strong>Attendance %:</strong> {{ item.percentage }}%<br />
+        <strong>Fine:</strong> {{ item.fine }}৳
       </div>
 
       <div class="export-btns">

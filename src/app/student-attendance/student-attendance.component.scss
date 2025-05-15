@@ -1,4 +1,3 @@
-/* File: student-attendance.component.scss */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -13,6 +12,12 @@
 
   mat-form-field {
     min-width: 200px;
+    color: white;
+  }
+
+  mat-select,
+  input {
+    color: #ffffff;
   }
 }
 
@@ -30,23 +35,41 @@
   width: 100%;
 }
 
+.card-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+  color: #00bcd4;
+}
+
 .present {
   color: green;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .absent {
   color: red;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .summary-totals {
   margin-top: 12px;
   font-size: 14px;
+  color: green;
+  strong {
+    display: inline-block;
+    width: 150px;
+    color: black;
+  }
 }
 
 .export-btns {
-  margin-top: 16px;
-  display: flex;
-  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.no-data {
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1.2rem;
+  color: #ccc;
 }

@@ -1,4 +1,3 @@
-// File: student-attendance.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
@@ -7,7 +6,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { FormControl } from '@angular/forms';
+import { Observable, startWith, map } from 'rxjs';
 
 interface AttendanceSession {
   date: string;
@@ -19,6 +22,7 @@ interface AttendanceSummary {
   attended: number;
   total: number;
   fine: number;
+  percentage?: number;
   studentName: string;
   studentId: string;
   semester: string;
@@ -33,8 +37,11 @@ interface AttendanceSummary {
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
     MatTableModule,
     MatProgressBarModule,
     MatButtonModule,
@@ -48,15 +55,15 @@ export class StudentAttendanceComponent implements OnInit {
   loading: boolean = true;
   selectedSemester: string = 'all';
   selectedSubject: string = 'all';
+  studentIdControl = new FormControl('');
+  filteredStudentIds$: Observable<string[]> = new Observable();
 
   ngOnInit(): void {
     setTimeout(() => {
       this.summary = [
         {
           subject: "Mathematics",
-          attended: 24,
-          total: 30,
-          fine: 120,
+          attended: 0, total: 0, fine: 0,
           studentName: "Rohit Sharma",
           studentId: "STU202501",
           semester: "6",
@@ -70,9 +77,7 @@ export class StudentAttendanceComponent implements OnInit {
         },
         {
           subject: "Physics",
-          attended: 26,
-          total: 30,
-          fine: 80,
+          attended: 0, total: 0, fine: 0,
           studentName: "Rohit Sharma",
           studentId: "STU202501",
           semester: "6",
@@ -86,9 +91,7 @@ export class StudentAttendanceComponent implements OnInit {
         },
         {
           subject: "Chemistry",
-          attended: 28,
-          total: 30,
-          fine: 40,
+          attended: 0, total: 0, fine: 0,
           studentName: "Rohit Sharma",
           studentId: "STU202501",
           semester: "5",
@@ -101,20 +104,37 @@ export class StudentAttendanceComponent implements OnInit {
           ],
         },
       ];
+      this.filteredStudentIds$ = this.studentIdControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this.studentIds.filter(id => id.toLowerCase().includes(value?.toLowerCase() || '')))
+      );
       this.loading = false;
     }, 1000);
   }
 
   handleExport(): void {
     console.log("Exporting report...");
-    // Export logic here
   }
 
   filteredSummary(): AttendanceSummary[] {
-    return this.summary.filter(s => {
-      return (this.selectedSemester === "all" || s.semester === this.selectedSemester) &&
-        (this.selectedSubject === "all" || s.subject === this.selectedSubject);
-    });
+    return this.summary.map(s => {
+      const total = 30;
+      const attended = s.sessions.filter(sess => sess.status === 'Present').length;
+      const fine = (total - attended) * 20;
+      const percentage = (attended / total) * 100;
+
+      return {
+        ...s,
+        total,
+        attended,
+        fine,
+        percentage: +percentage.toFixed(2)
+      };
+    }).filter(s =>
+      (this.selectedSemester === 'all' || s.semester === this.selectedSemester) &&
+      (this.selectedSubject === 'all' || s.subject === this.selectedSubject) &&
+      (!this.studentIdControl.value || s.studentId.includes(this.studentIdControl.value))
+    );
   }
 
   get semesterOptions(): string[] {
@@ -124,5 +144,8 @@ export class StudentAttendanceComponent implements OnInit {
   get subjectOptions(): string[] {
     return Array.from(new Set(this.summary.map(s => s.subject)));
   }
-}
 
+  get studentIds(): string[] {
+    return Array.from(new Set(this.summary.map(s => s.studentId)));
+  }
+}
